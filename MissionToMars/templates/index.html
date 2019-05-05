@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Mission to Mars</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="jumbotron text-center">
+                    <h1>Mission to Mars</h1>
+                    <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape New Data</a></p>
+                </div>
+            </div>
+        </div>
+
+        <br>
+
+        <!-- NASA Mar's News-->
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Latest Mars News</h2>
+                <h4>{{ mars_info.news_title }}</h4>
+                <p>{{ mars_info.news_p }}</p>
+            </div>
+        </div>
+
+        <!-- Featured Image-->
+        <div class="row">
+            <div class="col-md-6" >
+                <h2>Featured Mars Image</h2>
+                <img src="{{mars_info.featured_image_url}}" alt="Mars feature image"
+                style="width:512px;height:512px;">
+            </div>
+
+            
+            <div class="col-md-6">
+                <!--Mars Weather-->
+                <h2>Current Weather on Mars</h2>
+                <p>{{mars_info.twit_url}}</p>
+                <br>
+                <!--Mars Facts-->
+                <h2>Mars Facts</h2>
+                {{mars_info.html_table| safe}}
+            </div>
+        </div>
+
+        <br>
+        <br>
+
+        <!--Mars Hemispheres-->
+        <div class="row">
+            <div class="col-md-12">
+                <center><h2>Mars Hemispheres</h2></center>
+                <hr>
+            </div>
+        </div>
+        <div class="row">
+            {% for hemi in mars_info.hemisphere_image_urls %}
+            <div class="col-md-6">
+                <div class="card text-dark bg-white" style="margin: 30px;">
+                    <img class="card-img-top" src="{{hemi.img_url}}"
+                    alt={{hemi.title}} style="height:479px;" >
+                    <div class="card-body">
+                        <center><h4>{{hemi.title}} </h4></center>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+    </div>
+
+</body>
+
+</html>
